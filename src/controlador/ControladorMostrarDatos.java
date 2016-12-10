@@ -3,40 +3,62 @@ package controlador;
 
 import MVC.controlador.Controlador;
 import Vista.VentanaVerAlumnos;
+import Vista.VentanaVerProfesores;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 import modelo.Alumno;
 import modelo.AlumnoDAO;
+import modelo.Profesor;
+import modelo.ProfesorDAO;
 
 public class ControladorMostrarDatos extends Controlador {
 
-    public VentanaVerAlumnos ventanaAlumnos;
+    private VentanaVerAlumnos ventanaAlumnos;
+    private VentanaVerProfesores ventanaProfesores;
 
     public void mostrarAlumnos() {
+        ventanaAlumnos = new VentanaVerAlumnos();
         AlumnoDAO  dao = new AlumnoDAO();
         mostrarDatosAlumnos(dao.obtenerAlumnos());
+        ventanaAlumnos.setVisible(true);
+        
     }
 
     private void mostrarDatosAlumnos(ArrayList<Alumno> alumnos) {
         vaciarTablaAlumnos();
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        Object[] identificadores = {"Matricula", "Nombre", "Dirección", "Teléfono", "Carrera"};
-        modeloTabla.setColumnIdentifiers(identificadores);
         for (Alumno alumno : alumnos) {
-            Object[] fila = {alumno.getMatricula(),
+            String[] fila = {alumno.getMatricula(),
                 alumno.getNombre(),
                 alumno.getDireccion(),
                 alumno.getTelefono(),
                 alumno.getCarrera()};
-            modeloTabla.addRow(fila);
+            ventanaAlumnos.getModelo().addRow(fila);
         }
-        ventanaAlumnos.setContenidoTabla(modeloTabla);
-        ventanaAlumnos.setVisible(true);
     }
 
     private void vaciarTablaAlumnos() {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.setRowCount(0);
-        ventanaAlumnos.setContenidoTabla(modeloTabla);
+        ventanaAlumnos.getModelo().setRowCount(0);
+    }
+    
+    public void mostrarProfesores() {
+        ventanaProfesores = new VentanaVerProfesores();
+        ProfesorDAO  dao = new ProfesorDAO();
+        mostrarDatosProfesores(dao.obtenerProfesores());
+        ventanaProfesores.setVisible(true);
+        
+    }
+
+    private void mostrarDatosProfesores(ArrayList<Profesor> profesores) {
+        vaciarTablaProfesores();
+        for (Profesor profesor : profesores) {
+            String[] fila = {profesor.getCProf(),
+                profesor.getNombre(),
+                profesor.getGrado(),
+                profesor.getFechaIngreso()};
+            ventanaProfesores.getModelo().addRow(fila);
+        }
+    }
+
+    private void vaciarTablaProfesores() {
+        ventanaProfesores.getModelo().setRowCount(0);
     }
 }

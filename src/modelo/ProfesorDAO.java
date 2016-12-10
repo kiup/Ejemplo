@@ -24,14 +24,13 @@ import pool.PoolConnection;
  *
  * @author Milka
  */
-public class AlumnoDAO {
-    
+public class ProfesorDAO {
     private String rutaArchivoMapeo = "configuracionMapeo.xml";
     private String rutaArchivoBD = "configuracion-bd.xml";
     private String rutaArchivoPool = "archivoConfiguracion.xml";
     private MonitorArchivo monitor;
     
-    public AlumnoDAO(){
+    public ProfesorDAO(){
         inicializarMonitorArchivo();
     }
     
@@ -44,7 +43,7 @@ public class AlumnoDAO {
         }
     }
     
-    public void insertarAlumno(Alumno alumno){
+    public void insertarProfesor(Profesor profesor){
         
         MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
         monitorPool.start();
@@ -54,25 +53,24 @@ public class AlumnoDAO {
         try {
             poolConnection = monitorPool.getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "insert into alumno values("+
-                "\""+alumno.getMatricula()+"\","+
-                "\""+alumno.getNombre()+"\","+
-                "\""+alumno.getDireccion()+"\","+
-                "\""+alumno.getTelefono()+"\","+
-                "\""+alumno.getCarrera()+"\")";
+        String consulta  = "insert into profesor values("+
+                "\""+profesor.getCProf()+"\","+
+                "\""+profesor.getNombre()+"\","+
+                "\""+profesor.getGrado()+"\","+
+                "\""+profesor.getFechaIngreso()+"\")";
         
         try {
             poolConnection.insertQuery(consulta);
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         poolConnection.close();
     }
     
-    public ArrayList<Alumno> obtenerAlumnos(){
+    public ArrayList<Profesor> obtenerProfesores(){
 
         MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
         monitorPool.start();
@@ -82,7 +80,7 @@ public class AlumnoDAO {
         try {
             poolConnection = monitorPool.getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -90,24 +88,24 @@ public class AlumnoDAO {
         try {
            mapeador = new MapeadorObjetoRelacional(rutaArchivoMapeo);
         } catch (ArchivoConfiguracionNoEncontradoExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
         
-        ArrayList<Alumno> alumnos =  null;
+        ArrayList<Profesor> profesores =  null;
         try {
-            mapeador.mapearObjetosRelacion("modelo.Alumno", poolConnection);
-             alumnos = mapeador.getListaObjetos();
+            mapeador.mapearObjetosRelacion("modelo.Profesor", poolConnection);
+             profesores = mapeador.getListaObjetos();
         } catch (MapeoInexistenteExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ObjetoErroneoExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MapeoErroneoExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return alumnos;
+        return profesores;
     }
 }

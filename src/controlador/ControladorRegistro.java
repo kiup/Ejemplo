@@ -8,6 +8,8 @@ package controlador;
 import MVC.controlador.Controlador;
 import modelo.Alumno;
 import modelo.AlumnoDAO;
+import modelo.Profesor;
+import modelo.ProfesorDAO;
 
 
 public class ControladorRegistro extends Controlador {
@@ -24,8 +26,15 @@ public class ControladorRegistro extends Controlador {
         dao.insertarAlumno(alumno);
     }
 
-    public void registroMaestro() {
-
+    public void registroProfesor() {
+        String [] datosProfesor = (String [])getEvt().getObject();
+        Profesor profesor =  new Profesor(datosProfesor[0],
+                                    datosProfesor[1],
+                                    datosProfesor[2],
+                                    datosProfesor[3]);
+        
+        ProfesorDAO dao = new ProfesorDAO();
+        dao.insertarProfesor(profesor);
     }
 
 }

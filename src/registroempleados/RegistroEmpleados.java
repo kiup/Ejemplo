@@ -6,11 +6,12 @@
 package registroempleados;
 
 import Vista.VistaRegistroAlumnos;
+import Vista.VistaRegistroProfesor;
 
 public class RegistroEmpleados {
 
     public static void main(String[] args) {
-        VistaRegistroAlumnos vista = new VistaRegistroAlumnos();
+        VistaRegistroProfesor vista = new VistaRegistroProfesor();
     }
     
 }

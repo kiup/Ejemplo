@@ -14,7 +14,7 @@ and open the template in the editor.
     </operacion>
     <operacion nombre = "registrarProfesor" controlador = "controlador.ControladorRegistro" metodo= "registroMaestro">
     </operacion>
-    <operacion nombre = "mostrarProfesores" controlador = "controlador.ControladorMostrarDatos" metodo= "mostrarMaestros">
+    <operacion nombre = "mostrarProfesores" controlador = "controlador.ControladorMostrarDatos" metodo= "mostrarProfesores">
     </operacion>
     <operacion nombre = "guardarDatosLogin" controlador = "controlador.ControladorLogin" metodo= "guardarDatosLogin">
     </operacion>

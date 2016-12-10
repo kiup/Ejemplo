@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<map>
+    <class name="modelo.Alumno">
+    <table name = "alumno"/>
+	<relation attribute= "matricula"
+                    field = "MATRIC"/> 
+    <relation attribute= "nombre"
+                    field = "NALUM"/>   
+    <relation attribute= "direccion"
+                    field = "DIREC"/>   
+    <relation attribute= "telefono"
+                    field = "TELEF"/>   
+    <relation attribute= "carrera"
+                    field = "CCAR"/>   
+    </class>
+    
+
+    <class name="modelo.Profesor">
+    <table name = "profes"/>
+	<relation attribute= "cProf"
+                    field = "CPROF"/> 
+    <relation attribute= "nombre"
+                    field = "NPROF"/>   
+    <relation attribute= "grado"
+                    field = "GRADO"/>   
+    <relation attribute= "fechaIngreso"
+                    field = "FINGR"/> 
+    </class>
+    
+</map>

@@ -12,11 +12,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Noe
  */
-public class VentanaVerAlumnos extends javax.swing.JFrame {
+public class VentanaVerProfesores extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     
-    public VentanaVerAlumnos() {
+    public VentanaVerProfesores() {
         initComponents();
         inicializarTabla();
     }
@@ -92,7 +92,7 @@ public class VentanaVerAlumnos extends javax.swing.JFrame {
     }
     private void inicializarTabla() {
 
-        String[] cabecera = {"Matricula", "Nombre", "Dirección", "Teléfono", "Carrera"};
+        String[] cabecera = {"Cprof", "Nombre", "Grado", "Fecha Ingreso"};
         Object cuerpo[][] = {};
 
         modelo = new DefaultTableModel(cuerpo, cabecera);

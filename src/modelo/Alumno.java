@@ -16,6 +16,10 @@ public class Alumno {
     private String telefono;
     private String carrera;
 
+    public Alumno() {
+    }
+
+    
     public Alumno(String matricula, String nombre, String direccion, String telefono, String carrera) {
         this.matricula = matricula;
         this.nombre = nombre;
