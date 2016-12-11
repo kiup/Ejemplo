@@ -13,6 +13,8 @@ import Seguridad.Usuario;
  */
 public class UsuarioN extends Usuario{
     private String tipo;
+    private String cuser;
+    private String contr;
 
     public UsuarioN() {
         super(null, null);

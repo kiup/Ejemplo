@@ -9,6 +9,6 @@ and open the template in the editor.
 <root>
     <config>
         <segment>1</segment>
-        <connections>20</connections>
+        <connections>5</connections>
     </config>    
 </root>

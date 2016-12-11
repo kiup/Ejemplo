@@ -56,7 +56,7 @@ public class ProfesorDAO {
             Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "insert into profesor values("+
+        String consulta  = "insert into profes values("+
                 "\""+profesor.getCProf()+"\","+
                 "\""+profesor.getNombre()+"\","+
                 "\""+profesor.getGrado()+"\","+
@@ -106,6 +106,7 @@ public class ProfesorDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        poolConnection.close();
         return profesores;
     }
 }

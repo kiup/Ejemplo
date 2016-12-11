@@ -26,11 +26,12 @@ import java.util.logging.Logger;
  *
  * @author juan
  */
-public class VistaSesion extends Vista{
+public class VistaSesion extends Vista {
+
     private VentanaLogin ventanaLogin;
     private AdminLogin admin;
-    
-    public VistaSesion(){
+
+    public VistaSesion() {
         ventanaLogin = new VentanaLogin();
         ventanaLogin.setVisible(true);
         setConfiguracion("archivoConfiguracionMVC.xml");
@@ -38,8 +39,8 @@ public class VistaSesion extends Vista{
         inicializarAdminLogin();
         tomarDatos();
     }
-    
-    public void inicializarAdminLogin(){
+
+    public void inicializarAdminLogin() {
         Evento evento = new Evento("insertarUsuarios", null);
         try {
             callService(evento);
@@ -61,49 +62,47 @@ public class VistaSesion extends Vista{
             Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void tomarDatos(){
+
+    public void tomarDatos() {
         ventanaLogin.getbtnIniciarSesion().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("hoal");
-                String usuario  = ventanaLogin.getTxtUsuario().getText();
-                String clave = ventanaLogin.getTxtContrasenia().getPassword().toString();
-                
-                while(!admin.validarAccesoAlSistema(usuario, clave)){
-                    
+                String usuario = ventanaLogin.getTxtUsuario().getText();
+                String clave = ventanaLogin.getTxtContrasenia().getText();
+
+                if (admin.validarAccesoAlSistema(usuario, clave)) {
+                    String[] datos = new String[3];
+
+                    datos[0] = usuario;
+                    datos[1] = clave;
+
+                    Evento evento = new Evento("iniciarUsuario", datos);
+
+                    try {
+                        callService(evento);
+                    } catch (ClaseNoEncontrada ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NoEsSubclaseControlador ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (FalloInstanciaDeClase ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NoSePuedeAccederAlaClase ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (MetodoNoExiste ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ViolacionDeSeguridad ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ArgumentosNoCorrectos ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ErrorAlInvocarObjetivo ex) {
+                        Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }
-                
-                String[] datos = new String[3];
-                
-                datos[0] = usuario;
-                datos[1] = clave;
-                
-                Evento evento = new Evento("iniciarUsuario", datos);
-                
-                
-                try {
-                    callService(evento);
-                } catch (ClaseNoEncontrada ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NoEsSubclaseControlador ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FalloInstanciaDeClase ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NoSePuedeAccederAlaClase ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (MetodoNoExiste ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ViolacionDeSeguridad ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ArgumentosNoCorrectos ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ErrorAlInvocarObjetivo ex) {
-                    Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
             }
+
         });
     }
-    
+
 }

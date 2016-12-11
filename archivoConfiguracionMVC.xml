@@ -12,13 +12,14 @@ and open the template in the editor.
     </operacion>
     <operacion nombre = "mostrarAlumnos" controlador = "controlador.ControladorMostrarDatos" metodo= "mostrarAlumnos">
     </operacion>
-    <operacion nombre = "registrarProfesor" controlador = "controlador.ControladorRegistro" metodo= "registroMaestro">
+    <operacion nombre = "registrarProfesor" controlador = "controlador.ControladorRegistro" metodo= "registroProfesor">
     </operacion>
     <operacion nombre = "mostrarProfesores" controlador = "controlador.ControladorMostrarDatos" metodo= "mostrarProfesores">
     </operacion>
     <operacion nombre = "insertarUsuarios" controlador = "controlador.ControladorLogin" metodo= "insertarUsuarios">
     </operacion>
-
+    <operacion nombre = "iniciarUsuario" controlador = "controlador.ControladorLogin" metodo= "iniciarUsuario">
+    </operacion>
 </operaciones>
 
 
