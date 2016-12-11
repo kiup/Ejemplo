@@ -6,8 +6,6 @@
 package modelo;
 
 import Seguridad.Usuario;
-import archivo.MonitorArchivo;
-import excepciones.ArchivoConfigBDNoEncontradaException;
 import excepciones.ArchivoConfiguracionNoEncontradoExcepcion;
 import excepciones.MapeoErroneoExcepcion;
 import excepciones.MapeoInexistenteExcepcion;
@@ -18,7 +16,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mapeo.MapeadorObjetoRelacional;
-import pool.MonitorArchivoConfiguracion;
 import pool.PoolConnection;
 
 /**
@@ -27,24 +24,9 @@ import pool.PoolConnection;
  */
 public class UsuarioDAO {
     private final String rutaArchivoMapeo = "configuracionMapeo.xml";
-    private final String rutaArchivoBD = "configuracion-bd.xml";
-    private final String rutaArchivoPool = "archivoConfiguracion.xml";
-    private MonitorArchivo monitor;
-    private MonitorArchivoConfiguracion monitorPool;
-    
+    private Conexion conexion;
     public UsuarioDAO(){
-        inicializarMonitorArchivo();
-    }
-    
-    public void inicializarMonitorArchivo(){
-        try {
-            monitor = new MonitorArchivo("monitor1", rutaArchivoBD );
-            monitor.start();
-            monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-            monitorPool.start();
-        } catch (ArchivoConfigBDNoEncontradaException ex) {
-
-        }
+        conexion = Conexion.getConexion();
     }
     
     public void insertarUsuario(UsuarioN usuario){
@@ -52,9 +34,9 @@ public class UsuarioDAO {
         
         
         PoolConnection poolConnection = null;
-        monitorPool.getAdminPool().initializePoolConnections();
+        conexion.getMonitorPool().getAdminPool().initializePoolConnections();
         try {
-            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+            poolConnection = conexion.getMonitorPool().getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,9 +57,9 @@ public class UsuarioDAO {
     public void actualizarUsuario(UsuarioN usuario){
         
         PoolConnection poolConnection = null;
-        monitorPool.getAdminPool().initializePoolConnections();
+        conexion.getMonitorPool().getAdminPool().initializePoolConnections();
         try {
-            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+            poolConnection = conexion.getMonitorPool().getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,9 +78,9 @@ public class UsuarioDAO {
     
     public ArrayList<Usuario> obtenerUsuarios(){
         PoolConnection poolConnection = null;
-        monitorPool.getAdminPool().initializePoolConnections();
+        conexion.getMonitorPool().getAdminPool().initializePoolConnections();
         try {
-            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+            poolConnection = conexion.getMonitorPool().getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

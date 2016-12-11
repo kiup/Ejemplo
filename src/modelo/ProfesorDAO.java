@@ -5,8 +5,6 @@
  */
 package modelo;
 
-import archivo.MonitorArchivo;
-import excepciones.ArchivoConfigBDNoEncontradaException;
 import excepciones.ArchivoConfiguracionNoEncontradoExcepcion;
 import excepciones.MapeoErroneoExcepcion;
 import excepciones.MapeoInexistenteExcepcion;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mapeo.MapeadorObjetoRelacional;
-import pool.MonitorArchivoConfiguracion;
 import pool.PoolConnection;
 
 /**
@@ -26,32 +23,18 @@ import pool.PoolConnection;
  */
 public class ProfesorDAO {
     private String rutaArchivoMapeo = "configuracionMapeo.xml";
-    private String rutaArchivoBD = "configuracion-bd.xml";
-    private String rutaArchivoPool = "archivoConfiguracion.xml";
-    private MonitorArchivo monitor;
-    private MonitorArchivoConfiguracion monitorPool;
+    private Conexion conexion;
     
     public ProfesorDAO(){
-        inicializarMonitorArchivo();
-    }
-    
-    public void inicializarMonitorArchivo(){
-        try {
-            monitor = new MonitorArchivo("monitor1", rutaArchivoBD );
-            monitor.start();
-            monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-            monitorPool.start();
-        } catch (ArchivoConfigBDNoEncontradaException ex) {
-
-        }
+        conexion = Conexion.getConexion();
     }
     
     public void insertarProfesor(Profesor profesor){
         
         PoolConnection poolConnection = null;
-        monitorPool.getAdminPool().initializePoolConnections();
+        conexion.getMonitorPool().getAdminPool().initializePoolConnections();
         try {
-            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+            poolConnection = conexion.getMonitorPool().getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
             Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,9 +56,9 @@ public class ProfesorDAO {
     public ArrayList<Profesor> obtenerProfesores(){
 
         PoolConnection poolConnection = null;
-        monitorPool.getAdminPool().initializePoolConnections();
+        conexion.getMonitorPool().getAdminPool().initializePoolConnections();
         try {
-            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+            poolConnection = conexion.getMonitorPool().getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
             Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,9 +93,9 @@ public class ProfesorDAO {
     public void actualizarProfesor(Profesor profesor) {
         
         PoolConnection poolConnection = null;
-        monitorPool.getAdminPool().initializePoolConnections();
+        conexion.getMonitorPool().getAdminPool().initializePoolConnections();
         try {
-            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+            poolConnection = conexion.getMonitorPool().getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
             Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

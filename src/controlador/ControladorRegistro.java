@@ -27,7 +27,6 @@ public class ControladorRegistro extends Controlador {
     }
 
     public void registroProfesor() {
-        System.out.println("Hola");
         String [] datosProfesor = (String [])getEvt().getObject();
         Profesor profesor =  new Profesor(datosProfesor[0],
                                     datosProfesor[1],
