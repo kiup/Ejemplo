@@ -42,12 +42,12 @@ public class VentanaSesion extends Vista{
                 String usuario  = ventanaLogin.getTxtUsuario().getText();
                 String clave = ventanaLogin.getTxtContrasenia().getPassword().toString();
                 
-                ArrayList<String> datos = new ArrayList<>();
+                String[] datos = new String[3];
                 
-                datos.add(usuario);
-                datos.add(clave);
+                datos[0] = usuario;
+                datos[1] = clave;
                 
-                Evento evento = new Evento("guardarDatosLogin", datos);
+                Evento evento = new Evento("buscarUsuario", datos);
                 
                 
                 try {

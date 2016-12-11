@@ -5,38 +5,38 @@
  */
 package modelo;
 
+import Seguridad.Usuario;
+
 /**
  *
  * @author Milka
  */
-public class Usuario {
-    private String cuser;
-    private String contr;
+public class UsuarioN extends Usuario{
     private String tipo;
 
-    public Usuario() {
+    public UsuarioN() {
+        super(null, null);
     }
 
-    public Usuario(String cuser, String contr, String tipo) {
-        this.cuser = cuser;
-        this.contr = contr;
+    public UsuarioN(String cuser, String contr, String tipo) {
+        super(cuser, contr);
         this.tipo = tipo;
     }
 
     public String getCuser() {
-        return cuser;
+        return getNombreUsuario();
     }
 
     public void setCuser(String cuser) {
-        this.cuser = cuser;
+        setNombreUsuario(cuser);
     }
 
     public String getContr() {
-        return contr;
+        return getContrasenia();
     }
 
     public void setContr(String contr) {
-        this.contr = contr;
+        setContrasenia(contr);
     }
 
     public String getTipo() {

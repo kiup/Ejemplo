@@ -8,12 +8,11 @@ package controlador;
 import MVC.controlador.Controlador;
 import modelo.Alumno;
 import modelo.AlumnoDAO;
+import modelo.UsuarioDAO;
+import modelo.UsuarioN;
 
 
 public class ControladorActualizarDatos extends Controlador {
-    
-    
-    
     
     public void actualizarAlumno(){
         String [] datosAlumno = (String [])getEvt().getObject();
@@ -26,6 +25,13 @@ public class ControladorActualizarDatos extends Controlador {
         AlumnoDAO dao = new AlumnoDAO();
         dao.actualizarAlumno(alumno);
         
+        UsuarioDAO daoU = new UsuarioDAO();
+        
+        UsuarioN usuario = new UsuarioN();
+        usuario.setCuser(alumno.getMatricula());
+        usuario.setContr(datosAlumno[5]);
+        
+        daoU.actualizarUsuario(usuario);
     }
     
 }

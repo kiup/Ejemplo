@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import Seguridad.Usuario;
 import archivo.MonitorArchivo;
 import excepciones.ArchivoConfigBDNoEncontradaException;
 import excepciones.ArchivoConfiguracionNoEncontradoExcepcion;
@@ -24,14 +25,13 @@ import pool.PoolConnection;
  *
  * @author Milka
  */
-public class AlumnoDAO {
-    
-    private String rutaArchivoMapeo = "configuracionMapeo.xml";
-    private String rutaArchivoBD = "configuracion-bd.xml";
-    private String rutaArchivoPool = "archivoConfiguracion.xml";
+public class UsuarioDAO {
+    private final String rutaArchivoMapeo = "configuracionMapeo.xml";
+    private final String rutaArchivoBD = "configuracion-bd.xml";
+    private final String rutaArchivoPool = "archivoConfiguracion.xml";
     private MonitorArchivo monitor;
     
-    public AlumnoDAO(){
+    public UsuarioDAO(){
         inicializarMonitorArchivo();
     }
     
@@ -44,7 +44,7 @@ public class AlumnoDAO {
         }
     }
     
-    public void insertarAlumno(Alumno alumno){
+    public void insertarUsuario(UsuarioN usuario){
         
         MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
         monitorPool.start();
@@ -54,25 +54,23 @@ public class AlumnoDAO {
         try {
             poolConnection = monitorPool.getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "insert into alumno values("+
-                "\""+alumno.getMatricula()+"\","+
-                "\""+alumno.getNombre()+"\","+
-                "\""+alumno.getDireccion()+"\","+
-                "\""+alumno.getTelefono()+"\","+
-                "\""+alumno.getCarrera()+"\")";
+        String consulta  = "insert into usuario values("+
+                "\""+usuario.getCuser()+"\","+
+                "\""+usuario.getContr()+"\","+
+                "\""+usuario.getTipo()+"\")";
         
         try {
             poolConnection.insertQuery(consulta);
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         poolConnection.close();
     }
     
-    public void actualizarAlumno(Alumno alumno){
+    public void actualizarUsuario(UsuarioN usuario){
         MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
         monitorPool.start();
         
@@ -81,23 +79,22 @@ public class AlumnoDAO {
         try {
             poolConnection = monitorPool.getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "update into alumno set "+
-                "DIREC=\""+alumno.getDireccion()+"\","+
-                "TELEF=\""+alumno.getTelefono()+"\""+
-                "where MATRIC=\""+alumno.getMatricula()+"\")";
+        String consulta  = "update into usuario set "+
+                "CONTR=\""+usuario.getContr()+"\""+
+                "where CUSER=\""+usuario.getCuser()+"\")";
         
         try {
             poolConnection.insertQuery(consulta);
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         poolConnection.close();
     }
     
-    public ArrayList<Alumno> obtenerAlumnos(){
+    public ArrayList<Usuario> obtenerUsuarios(){
 
         MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
         monitorPool.start();
@@ -107,7 +104,7 @@ public class AlumnoDAO {
         try {
             poolConnection = monitorPool.getAdminPool().getPoolConnection();
         } catch (NotAvailableConnectionsException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -115,26 +112,26 @@ public class AlumnoDAO {
         try {
            mapeador = new MapeadorObjetoRelacional(rutaArchivoMapeo);
         } catch (ArchivoConfiguracionNoEncontradoExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
         
-        ArrayList<Alumno> alumnos =  null;
+        ArrayList<Usuario> usuarios =  null;
         try {
-            mapeador.mapearObjetosRelacion("modelo.Alumno", poolConnection);
-             alumnos = mapeador.getListaObjetos();
+            mapeador.mapearObjetosRelacion("modelo.Usuario", poolConnection);
+             usuarios = mapeador.getListaObjetos();
         } catch (MapeoInexistenteExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ObjetoErroneoExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MapeoErroneoExcepcion ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         poolConnection.close();
-        return alumnos;
+        return usuarios;
     }
 }
