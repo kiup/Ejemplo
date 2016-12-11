@@ -26,8 +26,9 @@ import javax.swing.JOptionPane;
 public class VistaProfesor extends Vista{
     private VentanaDatosProfesor ventana;
     
-    public VistaProfesor() {
+    public VistaProfesor(String cprof) {
         ventana = new VentanaDatosProfesor();
+        ventana.getcProf().setText(cprof);
         ventana.setVisible(true);
         setConfiguracion("archivoConfiguracionMVC.xml");
         actualizarDatos();

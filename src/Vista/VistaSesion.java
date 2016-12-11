@@ -72,12 +72,8 @@ public class VistaSesion extends Vista {
                 String clave = ventanaLogin.getTxtContrasenia().getText();
 
                 if (admin.validarAccesoAlSistema(usuario, clave)) {
-                    String[] datos = new String[3];
 
-                    datos[0] = usuario;
-                    datos[1] = clave;
-
-                    Evento evento = new Evento("iniciarUsuario", datos);
+                    Evento evento = new Evento("iniciarUsuario", usuario);
 
                     try {
                         callService(evento);

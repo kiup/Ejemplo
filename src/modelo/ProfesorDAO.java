@@ -109,4 +109,28 @@ public class ProfesorDAO {
         poolConnection.close();
         return profesores;
     }
+
+    public void actualizarProfesor(Profesor profesor) {
+        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
+        monitorPool.start();
+        
+        PoolConnection poolConnection = null;
+        monitorPool.getAdminPool().initializePoolConnections();
+        try {
+            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+        } catch (NotAvailableConnectionsException ex) {
+            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String consulta  = "update into profes set "+
+                "GRADO=\""+profesor.getGrado()+"\""+
+                "where CPROF=\""+profesor.getCProf()+"\")";
+        
+        try {
+            poolConnection.insertQuery(consulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        poolConnection.close();
+    }
 }

@@ -29,8 +29,9 @@ import javax.swing.JOptionPane;
 public class VistaAlumno extends Vista{
     private VentanaDatosAlumno ventana;
     
-    public VistaAlumno() {
+    public VistaAlumno(String matricula) {
         ventana = new VentanaDatosAlumno();
+        ventana.getMatricula().setText(matricula);
         ventana.setVisible(true);
         setConfiguracion("archivoConfiguracionMVC.xml");
         actualizarDatos();
