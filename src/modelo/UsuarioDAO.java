@@ -119,7 +119,7 @@ public class UsuarioDAO {
         
         ArrayList<Usuario> usuarios =  null;
         try {
-            mapeador.mapearObjetosRelacion("modelo.Usuario", poolConnection);
+            mapeador.mapearObjetosRelacion("modelo.UsuarioN", poolConnection);
              usuarios = mapeador.getListaObjetos();
         } catch (MapeoInexistenteExcepcion ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);

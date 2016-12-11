@@ -8,11 +8,12 @@ package registroempleados;
 import Vista.VistaAdmin;
 import Vista.VistaRegistroAlumnos;
 import Vista.VistaRegistroProfesor;
+import Vista.VistaSesion;
 
 public class RegistroEmpleados {
 
     public static void main(String[] args) {
-        VistaAdmin vista = new VistaAdmin();
+        VistaSesion vista = new VistaSesion();
     }
     
 }

@@ -1,3 +1,5 @@
 2016-12-10 15:54:23,638 [ERROR] excepciones.ObjetoErroneoExcepcion - No se puede instanciar el objeto: modelo.Alumno
 2016-12-10 16:27:32,031 [ERROR] excepciones.MapeoErroneoExcepcion - La tabla en la Base de Datos no contiene : NALUMN
 2016-12-10 16:28:16,070 [ERROR] excepciones.MapeoErroneoExcepcion - La tabla en la Base de Datos no contiene : NALUMN
+2016-12-10 21:33:49,395 [ERROR] excepciones.MapeoInexistenteExcepcion - No existe un mapeo para la clase: modelo.Usuario
+2016-12-10 21:35:12,835 [ERROR] excepciones.MapeoInexistenteExcepcion - No existe un mapeo para la clase: modelo.Usuario

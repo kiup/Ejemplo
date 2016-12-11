@@ -34,4 +34,15 @@ and open the template in the editor.
                     field = "FINGR"/> 
     </class>
     
+
+
+    <class name="modelo.UsuarioN">
+    <table name = "usuario"/>
+    <relation attribute= "cuser"
+                    field = "CUSER"/> 
+    <relation attribute= "contr"
+                    field = "CONTR"/>   
+    <relation attribute= "tipo"
+                    field = "TIPO"/>
+    </class>
 </map>

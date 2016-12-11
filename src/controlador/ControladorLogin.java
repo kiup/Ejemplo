@@ -7,10 +7,13 @@ package controlador;
 
 import MVC.controlador.Controlador;
 import Seguridad.AdminLogin;
+import Seguridad.Usuario;
 import Vista.VistaAdmin;
 import Vista.VistaAlumno;
 import Vista.VistaProfesor;
+import java.util.ArrayList;
 import modelo.UsuarioDAO;
+import modelo.UsuarioN;
 
 /**
  *
@@ -21,6 +24,11 @@ public class ControladorLogin extends Controlador{
     
     public void insertarUsuarios(){
         UsuarioDAO dao = new UsuarioDAO();
+        ArrayList<Usuario> usuarios = dao.obtenerUsuarios();
+        for (int i = 0; i < usuarios.size(); i++) {
+            System.out.println(usuarios.get(i).getNombreUsuario()
+            + " "+ usuarios.get(i).getContrasenia());
+        }
         admin.pasarListaUsuarios(dao.obtenerUsuarios());
     }
     
