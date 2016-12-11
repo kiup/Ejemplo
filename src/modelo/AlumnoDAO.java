@@ -72,6 +72,33 @@ public class AlumnoDAO {
         poolConnection.close();
     }
     
+    public void actualizarAlumno(Alumno alumno){
+        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
+        monitorPool.start();
+        
+        PoolConnection poolConnection = null;
+        monitorPool.getAdminPool().initializePoolConnections();
+        try {
+            poolConnection = monitorPool.getAdminPool().getPoolConnection();
+        } catch (NotAvailableConnectionsException ex) {
+            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String consulta  = "insert into alumno values("+
+                "\""+alumno.getMatricula()+"\","+
+                "\""+alumno.getNombre()+"\","+
+                "\""+alumno.getDireccion()+"\","+
+                "\""+alumno.getTelefono()+"\","+
+                "\""+alumno.getCarrera()+"\")";
+        
+        try {
+            poolConnection.insertQuery(consulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        poolConnection.close();
+    }
+    
     public ArrayList<Alumno> obtenerAlumnos(){
 
         MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
@@ -108,6 +135,8 @@ public class AlumnoDAO {
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        poolConnection.close();
         return alumnos;
     }
 }
