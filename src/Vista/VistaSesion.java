@@ -74,7 +74,7 @@ public class VistaSesion extends Vista {
                     Evento evento = new Evento("iniciarUsuario", usuario);
 
                     try {
-                        ventana.dispose();
+                        
                         callService(evento);
                     } catch (ClaseNoEncontrada ex) {
                         Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,7 +93,7 @@ public class VistaSesion extends Vista {
                     } catch (ErrorAlInvocarObjetivo ex) {
                         Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
+                    ventana.dispose();
                 }
             }
 

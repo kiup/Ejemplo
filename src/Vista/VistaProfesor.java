@@ -56,7 +56,7 @@ public class VistaProfesor extends Vista{
                     
                     try {
                         callService(evt);
-                        ventana.dispose();
+                        
                     } catch (ClaseNoEncontrada ex) {
                         Logger.getLogger(VistaProfesor.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (NoEsSubclaseControlador ex) {
@@ -74,7 +74,7 @@ public class VistaProfesor extends Vista{
                     } catch (ErrorAlInvocarObjetivo ex) {
                         Logger.getLogger(VistaProfesor.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+                    ventana.dispose();
                 }
                 
                 JOptionPane.showMessageDialog(null, "La contraseña es invalida"

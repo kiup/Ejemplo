@@ -33,8 +33,6 @@ public class AlumnoDAO {
         conexion = Conexion.getConexion();
     }
     
-    
-    
     public void insertarAlumno(Alumno alumno){
         PoolConnection poolConnection = null;
         conexion.getMonitorPool().getAdminPool().initializePoolConnections();
