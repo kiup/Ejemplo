@@ -44,6 +44,7 @@ public class VistaRegistroProfesor extends Vista{
                 
                 try {
                     callService(evt);
+                    ventana.dispose();
                 } catch (ClaseNoEncontrada ex) {
                     Logger.getLogger(VistaRegistroProfesor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NoEsSubclaseControlador ex) {
@@ -77,6 +78,7 @@ public class VistaRegistroProfesor extends Vista{
                 
                 try {
                     callService(evt);
+                    ventana.dispose();
                 } catch (ClaseNoEncontrada ex) {
                     Logger.getLogger(VistaRegistroProfesor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NoEsSubclaseControlador ex) {

@@ -36,6 +36,8 @@ public class VistaAdmin extends Vista{
                 VistaRegistroProfesor vista = new VistaRegistroProfesor();
             }
         });
+        
+        ventana.dispose();
     }
     
 }

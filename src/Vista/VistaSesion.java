@@ -18,7 +18,6 @@ import excepciones.NoSePuedeAccederAlaClase;
 import excepciones.ViolacionDeSeguridad;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,12 +27,12 @@ import java.util.logging.Logger;
  */
 public class VistaSesion extends Vista {
 
-    private VentanaLogin ventanaLogin;
+    private VentanaLogin ventana;
     private AdminLogin admin;
 
     public VistaSesion() {
-        ventanaLogin = new VentanaLogin();
-        ventanaLogin.setVisible(true);
+        ventana = new VentanaLogin();
+        ventana.setVisible(true);
         setConfiguracion("archivoConfiguracionMVC.xml");
         admin = AdminLogin.obtenerAdminLogin();
         inicializarAdminLogin();
@@ -43,6 +42,7 @@ public class VistaSesion extends Vista {
     public void inicializarAdminLogin() {
         Evento evento = new Evento("insertarUsuarios", null);
         try {
+            ventana.dispose();
             callService(evento);
         } catch (ClaseNoEncontrada ex) {
             Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,18 +64,18 @@ public class VistaSesion extends Vista {
     }
 
     public void tomarDatos() {
-        ventanaLogin.getbtnIniciarSesion().addActionListener(new ActionListener() {
+        ventana.getbtnIniciarSesion().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("hoal");
-                String usuario = ventanaLogin.getTxtUsuario().getText();
-                String clave = ventanaLogin.getTxtContrasenia().getText();
+                String usuario = ventana.getTxtUsuario().getText();
+                String clave = ventana.getTxtContrasenia().getText();
 
                 if (admin.validarAccesoAlSistema(usuario, clave)) {
 
                     Evento evento = new Evento("iniciarUsuario", usuario);
 
                     try {
+                        ventana.dispose();
                         callService(evento);
                     } catch (ClaseNoEncontrada ex) {
                         Logger.getLogger(VistaSesion.class.getName()).log(Level.SEVERE, null, ex);
