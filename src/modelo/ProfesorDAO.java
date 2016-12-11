@@ -29,6 +29,7 @@ public class ProfesorDAO {
     private String rutaArchivoBD = "configuracion-bd.xml";
     private String rutaArchivoPool = "archivoConfiguracion.xml";
     private MonitorArchivo monitor;
+    private MonitorArchivoConfiguracion monitorPool;
     
     public ProfesorDAO(){
         inicializarMonitorArchivo();
@@ -38,15 +39,14 @@ public class ProfesorDAO {
         try {
             monitor = new MonitorArchivo("monitor1", rutaArchivoBD );
             monitor.start();
+            monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
+            monitorPool.start();
         } catch (ArchivoConfigBDNoEncontradaException ex) {
 
         }
     }
     
     public void insertarProfesor(Profesor profesor){
-        
-        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-        monitorPool.start();
         
         PoolConnection poolConnection = null;
         monitorPool.getAdminPool().initializePoolConnections();
@@ -72,9 +72,6 @@ public class ProfesorDAO {
     
     public ArrayList<Profesor> obtenerProfesores(){
 
-        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-        monitorPool.start();
-        
         PoolConnection poolConnection = null;
         monitorPool.getAdminPool().initializePoolConnections();
         try {
@@ -111,8 +108,6 @@ public class ProfesorDAO {
     }
 
     public void actualizarProfesor(Profesor profesor) {
-        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-        monitorPool.start();
         
         PoolConnection poolConnection = null;
         monitorPool.getAdminPool().initializePoolConnections();

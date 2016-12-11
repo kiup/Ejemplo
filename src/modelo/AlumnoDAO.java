@@ -30,6 +30,7 @@ public class AlumnoDAO {
     private String rutaArchivoBD = "configuracion-bd.xml";
     private String rutaArchivoPool = "archivoConfiguracion.xml";
     private MonitorArchivo monitor;
+    private MonitorArchivoConfiguracion monitorPool;
     
     public AlumnoDAO(){
         inicializarMonitorArchivo();
@@ -39,16 +40,14 @@ public class AlumnoDAO {
         try {
             monitor = new MonitorArchivo("monitor1", rutaArchivoBD );
             monitor.start();
+            monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
+            monitorPool.start();
         } catch (ArchivoConfigBDNoEncontradaException ex) {
 
         }
     }
     
     public void insertarAlumno(Alumno alumno){
-        
-        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-        monitorPool.start();
-        
         PoolConnection poolConnection = null;
         monitorPool.getAdminPool().initializePoolConnections();
         try {
@@ -70,12 +69,10 @@ public class AlumnoDAO {
             Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         poolConnection.close();
+        
     }
     
     public void actualizarAlumno(Alumno alumno){
-        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-        monitorPool.start();
-        
         PoolConnection poolConnection = null;
         monitorPool.getAdminPool().initializePoolConnections();
         try {
@@ -98,10 +95,6 @@ public class AlumnoDAO {
     }
     
     public ArrayList<Alumno> obtenerAlumnos(){
-
-        MonitorArchivoConfiguracion monitorPool = new MonitorArchivoConfiguracion("pool", rutaArchivoPool);
-        monitorPool.start();
-        
         PoolConnection poolConnection = null;
         monitorPool.getAdminPool().initializePoolConnections();
         try {
