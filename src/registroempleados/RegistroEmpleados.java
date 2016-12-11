@@ -5,9 +5,6 @@
  */
 package registroempleados;
 
-import Vista.VistaAdmin;
-import Vista.VistaRegistroAlumnos;
-import Vista.VistaRegistroProfesor;
 import Vista.VistaSesion;
 
 public class RegistroEmpleados {
