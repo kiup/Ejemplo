@@ -37,7 +37,6 @@ public class VistaAdmin extends Vista{
             }
         });
         
-        ventana.dispose();
     }
     
 }

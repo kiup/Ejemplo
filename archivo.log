@@ -3,3 +3,7 @@
 2016-12-10 16:28:16,070 [ERROR] excepciones.MapeoErroneoExcepcion - La tabla en la Base de Datos no contiene : NALUMN
 2016-12-10 21:33:49,395 [ERROR] excepciones.MapeoInexistenteExcepcion - No existe un mapeo para la clase: modelo.Usuario
 2016-12-10 21:35:12,835 [ERROR] excepciones.MapeoInexistenteExcepcion - No existe un mapeo para la clase: modelo.Usuario
+11 dic 2016 - 19:25:07 [ERROR] conexiones.AdminConexiones - Ha ocurrido un error al intentar conectarse al servidor.
+11 dic 2016 - 19:25:09 [ERROR] conexiones.AdminConexiones - Ha ocurrido un error al intentar conectarse al servidor.
+11 dic 2016 - 19:25:11 [ERROR] conexiones.AdminConexiones - Ha ocurrido un error al intentar conectarse al servidor.
+11 dic 2016 - 19:25:13 [ERROR] conexiones.AdminConexiones - Ha ocurrido un error al intentar conectarse al servidor.

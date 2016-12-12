@@ -100,9 +100,9 @@ public class ProfesorDAO {
             Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "update into profes set "+
-                "GRADO=\""+profesor.getGrado()+"\""+
-                "where CPROF=\""+profesor.getCProf()+"\")";
+        String consulta  = "update profes set "+
+                "GRADO=\""+profesor.getGrado()+"\" "+
+                "where CPROF=\""+profesor.getCProf()+"\"";
         
         try {
             poolConnection.insertQuery(consulta);

@@ -67,11 +67,10 @@ public class AlumnoDAO {
             Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "update into alumno set "+
-                "DIREC=\""+alumno.getDireccion()+"\","+
-                "TELEF=\""+alumno.getTelefono()+"\""+
-                "where MATRIC=\""+alumno.getMatricula()+"\")";
-        
+        String consulta  = "update alumno set "+
+                "DIREC=\""+alumno.getDireccion()+"\", "+
+                "TELEF=\""+alumno.getTelefono()+"\" "+
+                "where MATRIC=\""+alumno.getMatricula()+"\"";
         try {
             poolConnection.insertQuery(consulta);
         } catch (SQLException ex) {

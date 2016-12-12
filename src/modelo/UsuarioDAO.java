@@ -64,9 +64,9 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String consulta  = "update into usuario set "+
-                "CONTR=\""+usuario.getContr()+"\""+
-                "where CUSER=\""+usuario.getCuser()+"\")";
+        String consulta  = "update usuario set "+
+                "CONTR=\""+usuario.getContr()+"\" "+
+                "where CUSER=\""+usuario.getCuser()+"\"";
         
         try {
             poolConnection.insertQuery(consulta);

@@ -78,7 +78,7 @@ public class VistaAlumno extends Vista{
                         Logger.getLogger(VistaAlumno.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     ventana.dispose();
-                }
+                }else{
                 
                 JOptionPane.showMessageDialog(null, "La contraseña es invalida"
                         + "\"*Debe tener al menos 8 caracteres\""
@@ -86,6 +86,7 @@ public class VistaAlumno extends Vista{
                         + "\"*Debe tener al menos una minuscula\""
                         + "\"*Debe tener al menos un numero\"",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 
             }
         });
