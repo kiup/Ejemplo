@@ -1,0 +1,6 @@
+12 dic 2016 - 09:33:03 [WARN ] archivo.MonitorArchivo - Se ha comenzado a monitorear al archivo: "configuracion-bd.xml"
+12 dic 2016 - 09:33:06 [ERROR] conexiones.AdminConexiones - Ha ocurrido un error al intentar conectarse al servidor.
+12 dic 2016 - 09:33:08 [ERROR] conexiones.AdminConexiones - Ha ocurrido un error al intentar conectarse al servidor.
+12 dic 2016 - 09:33:28 [WARN ] archivo.MonitorArchivo - Se ha comenzado a monitorear al archivo: "configuracion-bd.xml"
+12 dic 2016 - 09:36:48 [WARN ] pool.MonitorArchivoConfiguracion - Se ha comenzado a monitorear al archivo: "archivoConfiguracion.xml"
+12 dic 2016 - 09:36:48 [WARN ] archivo.MonitorArchivo - Se ha comenzado a monitorear al archivo: "configuracion-bd.xml"

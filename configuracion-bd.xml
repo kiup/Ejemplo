@@ -4,6 +4,6 @@
 		<serverurl>jdbc:mysql://localhost</serverurl>
 		<port>3306</port>
 		<username>root</username>
-		<password></password>
+		<password>root</password>
 	</config>
 </database>
